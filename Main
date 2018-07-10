@@ -1,0 +1,102 @@
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main{
+
+public static void main(String[] args) {
+   int counter = 0;
+Scanner sc = new Scanner(System.in);
+ArrayList<User> list = new ArrayList<>();
+User u1 = new User("Dan", "123", 314.45);
+User u2 = new User("Steph", "1234",500);
+User u3 = new User("Ana", "12345", 314.45);
+User u4 = new User("Parsh", "12346",500);
+list.add(u1);
+list.add(u2);
+list.add(u3);
+list.add(u4);
+User u5 = new User();
+boolean flag = true;
+while(flag) {
+ 
+System.out.println("Enter user and pass: ");
+String userEntered = sc.next();
+String passEntered = sc.next();
+boolean isSuccess = false;
+     
+u5.setName(userEntered);
+u5.setPassword(passEntered);
+    for(User user : list) {
+    if(u5.getName().equals(user.getName()) && (u5.getPassword().equals(user.getPassword()))){
+    isSuccess = true;
+    u5 = user;
+    break;
+    }
+    }
+    
+if(isSuccess) {
+System.out.println(u5);
+System.out.println("Login successfull");
+flag = false;
+}else{
+System.out.println("User or pass incorrect, try again");
+counter++;
+if(counter == 3) {
+System.out.println("Tried already 3 times, accout blocked");
+System.exit(1);
+}
+}
+}
+ 
+// if login is successful, here comes the menu:
+boolean x = true;
+while(x) {
+System.out.println("Please select your options: ");
+System.out.println("1. Get Current Balance"); 
+System.out.println("2. Add Ammount"); 
+System.out.println("3. Retreive ammount"); 
+System.out.println("4. Change password");
+System.out.println("5. Exit");
+int option = sc.nextInt() ;    
+switch(option) {
+case 1:
+System.out.println("You have: ");
+System.out.println(u5.getAccount());
+break;
+case 2:
+System.out.println("Please add the ammount to your balance: ");
+double ammount = sc.nextDouble();
+u5.depunereCont(ammount);
+System.out.println("Successfully added");
+  break;
+  
+case 3:
+System.out.println("Enter the ammount you want to retreive: ");
+double ammountRetreive = sc.nextDouble();
+u5.extragereCont(ammountRetreive);
+break;
+case 4:
+System.out.println("Please input old password: ");
+String old = sc.next();
+System.out.println("Please input new password: ");
+String newPass = sc.next();
+System.out.println("Please input new password again: ");
+String newPass2 = sc.next();
+u5.changePass(old, newPass, newPass2);
+break;
+case 5:
+x = false;
+System.out.println("Bye");
+break;
+default:
+System.out.println("No such option exists");
+ 
+}
+}
+ 
+ 
+
+ 
+}
+}
