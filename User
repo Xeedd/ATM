@@ -1,0 +1,98 @@
+
+public class User{
+
+private String name;
+private String password;
+private double account;
+
+public User() {
+}
+public User(String name, String password, double account) {
+this.name = name;
+this.password = password;
+this.account = account;
+}
+public void setName(String name) {
+this.name = name;
+}
+
+public void setPassword(String password) {
+this.password = password;
+}
+
+public void setAccount(double account) {
+this.account = account;
+}
+
+public String getName() {
+return name;
+}
+
+public String getPassword() {
+return password;
+}
+
+public double getAccount() {
+return this.account;
+}
+public void depunereCont(double sum) {
+this.account = account + sum;
+}
+public boolean extragereCont(double sumToExtract) {
+if(this.account < sumToExtract) {
+System.out.println("Not enough credit");
+return false;
+}
+System.out.println("Operation successfull");
+this.account = this.account - sumToExtract;
+return true;
+}
+public void changePass(String oldPass, String newPass1, String newPass2) {
+if(this.password.equals(oldPass) && (newPass1.equals(newPass2))) {
+  this.password = newPass2;
+  System.out.println("Successfully changed password");
+  
+}else {
+System.out.println("Failed, try again");
+}
+}
+
+@Override
+public String toString() {
+return "User [name=" + name + ", account=" + account + "]";
+}
+
+@Override
+public int hashCode() {
+final int prime = 31;
+int result = 1;
+result = prime * result + ((name == null) ? 0 : name.hashCode());
+result = prime * result + ((password == null) ? 0 : password.hashCode());
+return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+if (this == obj)
+return true;
+if (obj == null)
+return false;
+if (getClass() != obj.getClass())
+return false;
+User other = (User) obj;
+if (name == null) {
+if (other.name != null)
+return false;
+} else if (!name.equals(other.name))
+return false;
+if (password == null) {
+if (other.password != null)
+return false;
+} else if (!password.equals(other.password))
+return false;
+return true;
+}
+
+
+
+}
